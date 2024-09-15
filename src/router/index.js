@@ -89,6 +89,20 @@ export const constantRoutes = [
 // 动态路由，基于用户权限动态去加载
 export const dynamicRoutes = [
   {
+    path: '/setmeal/setmeal-info', //注意path不要和菜单配置中的路径一样，会不显示内容。
+    component: Layout,
+    hidden: true,
+    permissions: ['setmeal:setmeal:add'],
+    children: [
+      {
+        path: "info/:data?",
+        component: () => import('@/views/setmeal/setmeal/info.vue'),
+        name: 'info',
+        meta: { title: '新增套餐', activeMenu: '/setmeal/setmeal' }
+      }
+    ]
+  },
+  {
     path: '/system/user-auth',
     component: Layout,
     hidden: true,
@@ -157,7 +171,8 @@ export const dynamicRoutes = [
         meta: { title: '修改生成配置', activeMenu: '/tool/gen' }
       }
     ]
-  }
+  },
+
 ]
 
 const router = createRouter({
